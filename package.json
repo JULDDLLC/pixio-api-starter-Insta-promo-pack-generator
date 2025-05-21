@@ -4,10 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "npx @cloudflare/next-on-pages@1",
+    "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "deploy": "npx wrangler pages publish .vercel/output/static"
+    "lint": "next lint"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
@@ -59,3 +58,4 @@
     "typescript": "^5"
   }
 }
+
