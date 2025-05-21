@@ -5,6 +5,8 @@ import { stripe } from '@/lib/stripe/client';
 import { createOrRetrieveCustomer } from '@/lib/supabase/admin';
 import { getURL } from '@/lib/utils';
 
+export const runtime = 'edge';
+
 export async function POST(request: NextRequest) {
   try {
     // Get current user

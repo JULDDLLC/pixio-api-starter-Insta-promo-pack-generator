@@ -3,6 +3,8 @@ import { Navbar } from '@/components/shared/navbar';
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
 
+export const runtime = 'edge';
+
 export default async function AppLayout({
   children,
 }: {

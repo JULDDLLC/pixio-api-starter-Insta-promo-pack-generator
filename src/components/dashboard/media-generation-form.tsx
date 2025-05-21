@@ -83,6 +83,7 @@ async function uploadDirectlyToSupabase(
     }
 }
 
+export const metadata = siteMetadata;
 
 export function MediaGenerationForm({
   generationMode,

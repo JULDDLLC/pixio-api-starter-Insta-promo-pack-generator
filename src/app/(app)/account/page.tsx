@@ -16,6 +16,8 @@ import { CREDIT_PACKS } from '@/lib/config/pricing';
 import { CreditPackCard } from '@/components/account/credit-pack-card';
 import { User as UserIcon, CreditCard, Zap, Wallet } from 'lucide-react';
 
+export const runtime = 'edge';
+
 export default async function AccountPage() {
   const supabase = await createClient();
 

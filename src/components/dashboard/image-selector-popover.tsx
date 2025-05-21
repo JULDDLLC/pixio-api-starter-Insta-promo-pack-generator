@@ -37,6 +37,8 @@ interface ImageSelectorPopoverProps {
   disabled?: boolean;
 }
 
+export const metadata = siteMetadata;
+
 export function ImageSelectorPopover({
   selectedUrl,
   onImageSelect,

@@ -6,6 +6,8 @@ import { createOrRetrieveCustomer } from '@/lib/supabase/admin';
 import { getURL } from '@/lib/utils';
 import { CREDIT_PACKS } from '@/lib/config/pricing';
 
+export const runtime = 'edge';
+
 export async function POST(request: NextRequest) {
   try {
     const { priceId } = await request.json();

@@ -9,6 +9,8 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ['latin'] });
 
+export const runtime = 'edge';
+
 export const metadata = siteMetadata;
 
 export default function RootLayout({

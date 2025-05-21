@@ -718,6 +718,7 @@ const PricingSection = ({ userTierId, isAuthenticated }: PricingSectionProps) =>
   );
 };
 
+export const metadata = siteMetadata;
 
 // --- Main Landing Page Component ---
 export default function LandingPage() {

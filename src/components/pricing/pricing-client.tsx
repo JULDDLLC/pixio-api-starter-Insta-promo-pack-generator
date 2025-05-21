@@ -45,6 +45,8 @@ function BillingToggle({
   );
 }
 
+export const runtime = 'edge';
+
 export interface PricingClientProps { 
   initialBillingInterval: 'monthly' | 'yearly';
   pricingTiers: PricingTier[];

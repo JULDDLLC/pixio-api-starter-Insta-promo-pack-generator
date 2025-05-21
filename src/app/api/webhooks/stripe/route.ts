@@ -12,6 +12,8 @@ import {
 import { addPurchasedCredits, resetSubscriptionCredits } from '@/lib/credits';
 import { getTierByPriceId } from '@/lib/config/pricing';
 
+export const runtime = 'edge';
+
 export async function POST(req: Request) {
   try {
     const body = await req.text();

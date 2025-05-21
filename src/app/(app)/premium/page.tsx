@@ -1,8 +1,10 @@
-// src/app/(app)/premium/page.tsx
-import { isUserSubscribed, getSubscriptionTier } from '@/lib/supabase/subscriptions';
+// src/app/(app)/premium/page.tsx 
+import{ isUserSubscribed, getSubscriptionTier } from '@/lib/supabase/subscriptions';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+
+export const runtime = 'edge';
 
 export default async function PremiumPage() {
   const subscribed = await isUserSubscribed();
