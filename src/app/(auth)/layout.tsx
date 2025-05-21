@@ -2,6 +2,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -11,7 +12,7 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   const [mounted, setMounted] = useState(false);
-  
+
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -25,25 +26,25 @@ export default function AuthLayout({
     animationDuration: `${10 + (i % 10)}s`,
     animationDelay: `${(i % 10) * 0.5}s`
   }));
-  
+
   return (
-    <div className="flex min-h-screen flex-col overflow-hidden relative">
-      {/* Background */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-primary/5 via-background to-secondary/5" />
-      
-      {/* Grid pattern */}
-      <div className="absolute inset-0 -z-10 bg-[url('/grid.svg')] bg-[length:10px_10px] bg-repeat opacity-5"></div>
-      
-      {/* Moving circles */}
-      <div className="absolute top-[10%] left-[5%] w-[40vw] h-[40vw] rounded-full bg-primary/5 filter blur-[100px] animate-float" style={{ animationDuration: '30s' }}></div>
-      <div className="absolute bottom-[20%] right-[10%] w-[30vw] h-[30vw] rounded-full bg-secondary/5 filter blur-[100px] animate-float" style={{ animationDuration: '25s', animationDelay: '2s' }}></div>
-      
+    <div className="flex min-h-screen flex-col overflow-hidden relative font-sans">
+      {/* Luxury deep blue/gold gradient background */}
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-juldd-deep via-juldd-deepLight to-black" />
+
+      {/* Optional: Subtle gold grid pattern (remove if not needed) */}
+      {/* <div className="absolute inset-0 -z-10 bg-[url('/grid.svg')] bg-[length:10px_10px] bg-repeat opacity-5"></div> */}
+
+      {/* Animated blurred gold/blue circles */}
+      <div className="absolute top-[10%] left-[5%] w-[40vw] h-[40vw] rounded-full bg-juldd-gold/10 filter blur-[100px] animate-float" style={{ animationDuration: '30s' }}></div>
+      <div className="absolute bottom-[20%] right-[10%] w-[30vw] h-[30vw] rounded-full bg-juldd-deepLight/20 filter blur-[100px] animate-float" style={{ animationDuration: '25s', animationDelay: '2s' }}></div>
+
       {/* Particles */}
       <div className="particles absolute inset-0 -z-10">
         {particlePositions.map((pos, i) => (
-          <div 
-            key={i} 
-            className="particle absolute rounded-full bg-white/40"
+          <div
+            key={i}
+            className="particle absolute rounded-full bg-juldd-gold/30"
             style={{
               top: pos.top,
               left: pos.left,
@@ -56,23 +57,31 @@ export default function AuthLayout({
           />
         ))}
       </div>
-      
+
       <div className="flex-1 flex flex-col items-center justify-center p-4 relative z-10">
-        <Link href="/" className="absolute top-8 left-8">
-          <motion.span 
-            className="text-xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent"
+        <Link href="/" className="absolute top-8 left-8 flex items-center gap-3">
+          <Image
+            src="/julee_logo.png"
+            alt="JULDD LLC Logo"
+            width={48}
+            height={48}
+            className="logo"
+            priority
+          />
+          <motion.span
+            className="text-2xl font-serif font-bold gold-gradient-text tracking-wide"
             initial={mounted ? { opacity: 0, y: -20 } : { opacity: 1, y: 0 }}
             animate={mounted ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
           >
-            Pixio<span className="font-bold">API</span>
+            JULDD LLC
           </motion.span>
         </Link>
-        
+
         <AnimatePresence>
           {mounted && (
-            <motion.div 
-              className="w-full max-w-md"
+            <motion.div
+              className="w-full max-w-md glass-card"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
@@ -83,10 +92,10 @@ export default function AuthLayout({
           )}
         </AnimatePresence>
       </div>
-      
+
       <div className="p-4 text-center text-sm text-muted-foreground relative z-10">
         <p>
-          © {new Date().getFullYear()} Pixio API. All rights reserved.
+          © {new Date().getFullYear()} JULDD LLC. All rights reserved.
         </p>
       </div>
     </div>

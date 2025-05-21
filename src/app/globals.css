@@ -1,297 +1,298 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-}
-
-/* Modern glassmorphic theme with our color scheme */
+/* Custom luxury theme variables */
 :root {
-  /* Increased border radius for a sleeker feel */
   --radius: 1rem;
-  
-  /* Background with subtle color */
-  --background: oklch(0.98 0.01 270);
-  --foreground: oklch(0.2 0.02 280);
-  
-  /* Card styling with glass effect */
-  --card: oklch(0.97 0.01 270 / 0.7);
-  --card-foreground: oklch(0.2 0.02 280);
-  
-  /* Popover styling */
-  --popover: oklch(0.97 0.01 270 / 0.8);
-  --popover-foreground: oklch(0.2 0.02 280);
-  
-  /* Purple primary color from #7068F4 */
-  --primary: oklch(0.65 0.2 280);
-  --primary-foreground: oklch(0.99 0.01 0);
-  
-  /* Pink secondary color from #FF64B4 */
-  --secondary: oklch(0.72 0.22 350);
-  --secondary-foreground: oklch(0.99 0.01 0);
-  
-  /* Muted tones for subtle elements */
-  --muted: oklch(0.95 0.03 270);
-  --muted-foreground: oklch(0.5 0.05 280);
-  
-  /* Orange accent color from #ffac4c */
-  --accent: oklch(0.8 0.15 60);
-  --accent-foreground: oklch(0.15 0.02 0);
-  
-  /* Red tone for destructive actions */
-  --destructive: oklch(0.65 0.25 25);
-  --destructive-foreground: oklch(0.99 0.01 0);
-  
-  /* Soft borders and inputs */
-  --border: oklch(0.9 0.02 270 / 0.2);
-  --input: oklch(0.9 0.02 270 / 0.2);
-  --ring: oklch(0.65 0.2 280 / 0.5);
-  
-  /* Chart colors */
-  --chart-1: oklch(0.65 0.2 280); /* Purple - #7068F4 */
-  --chart-2: oklch(0.72 0.22 350); /* Pink - #FF64B4 */
-  --chart-3: oklch(0.8 0.15 60);  /* Orange - #ffac4c */
-  --chart-4: oklch(0.7 0.18 320); /* Magenta */
-  --chart-5: oklch(0.6 0.15 240); /* Blue-purple */
-  
-  /* Sidebar styling */
-  --sidebar: oklch(0.97 0.01 270 / 0.7);
-  --sidebar-foreground: oklch(0.2 0.02 280);
-  --sidebar-primary: oklch(0.65 0.2 280);
-  --sidebar-primary-foreground: oklch(0.99 0.01 0);
-  --sidebar-accent: oklch(0.8 0.15 60);
-  --sidebar-accent-foreground: oklch(0.15 0.02 0);
-  --sidebar-border: oklch(0.9 0.02 270 / 0.2);
-  --sidebar-ring: oklch(0.65 0.2 280 / 0.5);
+
+  /* Deep blue-black gradient background */
+  --background: linear-gradient(135deg, #0a0e1a 0%, #181c2b 100%);
+  --foreground: #f5f5f5;
+
+  /* Card glassmorphism */
+  --card: rgba(18, 22, 34, 0.85);
+  --card-foreground: #fff;
+
+  /* Gold accent (rich, not yellow) */
+  --gold: #bfa14a;
+  --gold-gradient: linear-gradient(90deg, #bfa14a 0%, #ffd700 100%);
+
+  /* Muted white for borders and subtle text */
+  --muted: #e5e7eb;
+  --muted-foreground: #b0b3c6;
+
+  /* Accent for buttons/links */
+  --accent: #bfa14a;
+  --accent-foreground: #181c2b;
+
+  /* Destructive (red) */
+  --destructive: #e63946;
+  --destructive-foreground: #fff;
+
+  /* Border and input */
+  --border: rgba(191, 161, 74, 0.15);
+  --input: rgba(255,255,255,0.08);
+  --ring: #bfa14a;
+
+  /* Sidebar */
+  --sidebar: rgba(18, 22, 34, 0.95);
+  --sidebar-foreground: #fff;
+  --sidebar-accent: #bfa14a;
+  --sidebar-border: rgba(191, 161, 74, 0.2);
+
+  /* Fonts */
+  --font-sans: 'Inter', 'Geist', 'Montserrat', 'Segoe UI', Arial, sans-serif;
+  --font-serif: 'Playfair Display', 'Georgia', serif;
 }
 
-/* Dark mode with futuristic tech feel */
 .dark {
-  /* Deep backgrounds with subtle transparency */
-  --background: oklch(0.15 0.03 280);
-  --foreground: oklch(0.96 0.02 0);
-  
-  /* Card styling with glassy effect */
-  --card: oklch(0.2 0.04 280 / 0.6);
-  --card-foreground: oklch(0.96 0.02 0);
-  
-  /* Popover styling */
-  --popover: oklch(0.2 0.04 280 / 0.7);
-  --popover-foreground: oklch(0.96 0.02 0);
-  
-  /* Brighter purple primary for dark mode - #7068F4 */
-  --primary: oklch(0.7 0.2 280);
-  --primary-foreground: oklch(0.1 0.02 0);
-  
-  /* Brighter pink for visibility - #FF64B4 */
-  --secondary: oklch(0.72 0.22 350);
-  --secondary-foreground: oklch(0.1 0.02 0);
-  
-  /* Dark muted colors */
-  --muted: oklch(0.25 0.04 280);
-  --muted-foreground: oklch(0.7 0.05 280);
-  
-  /* Brighter orange accent for dark mode visibility - #ffac4c */
-  --accent: oklch(0.8 0.15 60);
-  --accent-foreground: oklch(0.1 0.02 0);
-  
-  /* Brighter destructive for visibility */
-  --destructive: oklch(0.75 0.28 25);
-  --destructive-foreground: oklch(0.1 0.02 0);
-  
-  /* Subtle glowing borders */
-  --border: oklch(0.65 0.15 280 / 0.15);
-  --input: oklch(0.65 0.15 280 / 0.2);
-  --ring: oklch(0.7 0.2 280 / 0.5);
-  
-  /* Dark mode chart colors - brighter for contrast */
-  --chart-1: oklch(0.7 0.22 280); /* Brighter purple */
-  --chart-2: oklch(0.75 0.24 350); /* Brighter pink */
-  --chart-3: oklch(0.83 0.17 60);  /* Brighter orange */
-  --chart-4: oklch(0.75 0.2 320); /* Brighter magenta */
-  --chart-5: oklch(0.65 0.18 240); /* Brighter blue-purple */
-  
-  /* Dark sidebar with glass effect */
-  --sidebar: oklch(0.2 0.04 280 / 0.6);
-  --sidebar-foreground: oklch(0.96 0.02 0);
-  --sidebar-primary: oklch(0.7 0.2 280);
-  --sidebar-primary-foreground: oklch(0.1 0.02 0);
-  --sidebar-accent: oklch(0.8 0.15 60);
-  --sidebar-accent-foreground: oklch(0.1 0.02 0);
-  --sidebar-border: oklch(0.65 0.15 280 / 0.15);
-  --sidebar-ring: oklch(0.7 0.2 280 / 0.5);
+  --background: linear-gradient(135deg, #070a13 0%, #181c2b 100%);
+  --foreground: #f5f5f5;
+  --card: rgba(18, 22, 34, 0.92);
+  --card-foreground: #fff;
+  --muted: #b0b3c6;
+  --muted-foreground: #e5e7eb;
+  --border: rgba(191, 161, 74, 0.18);
+  --input: rgba(255,255,255,0.10);
+  --sidebar: rgba(18, 22, 34, 0.98);
+  --sidebar-foreground: #fff;
 }
 
+/* Base styles */
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
+  html {
+    font-family: var(--font-sans);
+    background: var(--background);
+    color: var(--foreground);
+    min-height: 100%;
   }
   body {
-    @apply bg-background text-foreground bg-gradient-to-br from-primary/5 via-background to-secondary/5;
+    @apply bg-no-repeat bg-cover min-h-screen;
+    background: var(--background);
+    color: var(--foreground);
   }
-  
-  /* Modern typography */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-medium;
+    font-family: var(--font-serif);
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.01em;
   }
-  
-  h1 {
-    @apply text-4xl;
+  h1 { @apply text-5xl mb-4; }
+  h2 { @apply text-3xl mb-2; }
+  h3 { @apply text-2xl mb-2; }
+  a {
+    color: var(--gold);
+    text-decoration: none;
+    transition: color 0.2s;
   }
-  
-  h2 {
-    @apply text-3xl;
-  }
-  
-  h3 {
-    @apply text-2xl;
+  a:hover {
+    color: #ffd700;
   }
 }
 
-/* Glassmorphic and futuristic design utility classes */
+/* Glassmorphic and luxury utility classes */
 @layer components {
   .glass-card {
-    @apply rounded-xl bg-white/20 dark:bg-black/20 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-lg hover:shadow-xl transition-shadow;
+    @apply rounded-2xl shadow-xl p-8;
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+    transition: box-shadow 0.3s;
   }
-  
+  .glass-card:hover {
+    box-shadow: 0 12px 40px 0 rgba(191, 161, 74, 0.18);
+    border-color: var(--gold);
+  }
+  .gold-gradient-text {
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+  .gold-border {
+    border: 2px solid var(--gold);
+  }
+  .luxury-btn {
+    @apply px-6 py-3 rounded-full font-semibold shadow-md transition;
+    background: var(--gold-gradient);
+    color: var(--accent-foreground);
+    border: none;
+    outline: none;
+    box-shadow: 0 2px 8px 0 rgba(191, 161, 74, 0.12);
+  }
+  .luxury-btn:hover {
+    background: linear-gradient(90deg, #ffd700 0%, #bfa14a 100%);
+    color: #181c2b;
+    box-shadow: 0 4px 16px 0 rgba(191, 161, 74, 0.18);
+  }
   .glass-input {
-    @apply bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 dark:border-white/10;
+    @apply px-4 py-2 rounded-lg;
+    background: var(--input);
+    border: 1.5px solid var(--border);
+    color: var(--foreground);
+    transition: border 0.2s;
   }
-  
-  .glass-button {
-    @apply backdrop-blur-sm hover:shadow-lg transition-all shadow-md;
+  .glass-input:focus {
+    border-color: var(--gold);
+    outline: none;
   }
-  
-  .gradient-purple-pink {
-    @apply bg-gradient-to-r from-primary to-secondary text-primary-foreground;
+  .luxury-divider {
+    border: none;
+    border-top: 2px solid var(--gold);
+    margin: 2rem 0;
+    opacity: 0.3;
   }
-  
-  .gradient-pink-orange {
-    @apply bg-gradient-to-r from-secondary to-accent text-secondary-foreground;
+  .hero-banner {
+    @apply w-full rounded-2xl shadow-2xl;
+    border: 2px solid var(--gold);
+    background: var(--background);
   }
-  
-  .gradient-purple-orange {
-    @apply bg-gradient-to-r from-primary to-accent text-primary-foreground;
+  .gradient-gold {
+    background: var(--gold-gradient);
   }
-  
-  .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent;
+  .sidebar {
+    background: var(--sidebar);
+    color: var(--sidebar-foreground);
+    border-right: 1.5px solid var(--sidebar-border);
   }
-  
-  .gradient-border {
-    @apply border border-transparent bg-gradient-to-r from-primary/30 via-secondary/30 to-accent/30 bg-origin-border;
-    -webkit-mask: 
-      linear-gradient(#fff 0 0) padding-box, 
-      linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
+  .sidebar-accent {
+    color: var(--sidebar-accent);
   }
-  
-  .glass-bg {
-    @apply bg-gradient-to-br from-primary/5 via-background to-secondary/5;
-  }
-  
-  .glass-container {
-    @apply container mx-auto px-4 sm:px-6 lg:px-8 py-8;
-  }
-  
-  .futuristic-border {
-    @apply border border-white/20 dark:border-white/10 rounded-xl overflow-hidden;
-  }
-  
-  .glow {
-    @apply relative;
-  }
-  
-  .glow::after {
-    @apply content-[''] absolute -inset-0.5 rounded-[inherit] z-[-1] opacity-75 pointer-events-none blur-md;
-    background: linear-gradient(35deg, #7068F4, transparent, #FF64B4, transparent, #ffac4c);
-    animation: shimmer 10s ease-in-out infinite;
-    background-size: 200% 200%;
-  }
-  
-  .glow-purple::after {
-    background: linear-gradient(35deg, #7068F4, rgba(112, 104, 244, 0.5), transparent);
-  }
-  
-  .glow-pink::after {
-    background: linear-gradient(35deg, #FF64B4, rgba(255, 100, 180, 0.5), transparent);
-  }
-  
-  .glow-orange::after {
-    background: linear-gradient(35deg, #ffac4c, rgba(255, 172, 76, 0.5), transparent);
-  }
-  
-  .interactive-card {
-    @apply transition-all duration-300 hover:translate-y-[-5px] hover:shadow-lg;
-  }
-  
-  .shimmer {
-    @apply relative overflow-hidden;
-  }
-  
-  .shimmer::after {
-    @apply content-[''] absolute inset-0 z-10;
-    background: linear-gradient(90deg, 
-      transparent, 
-      rgba(255, 255, 255, 0.1), 
-      transparent
-    );
-    background-size: 200% 100%;
-    animation: shimmer 1.5s infinite;
+  .sidebar-logo {
+    height: 56px;
+    width: auto;
+    display: block;
+    margin-bottom: 2rem;
+    filter: drop-shadow(0 2px 8px rgba(191,161,74,0.12));
   }
 }
 
-/* Animation keyframes */
+/* Animations */
 @keyframes shimmer {
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
+}
+.shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
 }
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
 }
+.float {
+  animation: float 3s ease-in-out infinite;
+}
 
 @keyframes pulse-glow {
   0%, 100% { opacity: 0.6; }
   50% { opacity: 1; }
+}
+.pulse-glow {
+  animation: pulse-glow 2s infinite;
+  box-shadow: 0 0 16px 2px var(--gold);
+}
+
+/* Responsive tweaks */
+@media (max-width: 640px) {
+  h1 { font-size: 2.25rem; }
+  h2 { font-size: 1.5rem; }
+  .glass-card { padding: 1.5rem; }
+}
+
+/* Utility for logo placement */
+.logo {
+  height: 56px;
+  width: auto;
+  display: block;
+  margin-bottom: 2rem;
+  filter: drop-shadow(0 2px 8px rgba(191,161,74,0.12));
+}
+
+/* Divider for sections */
+.section-divider {
+  border: none;
+  border-top: 2px solid var(--gold);
+  margin: 2.5rem 0;
+  opacity: 0.18;
+}
+
+/* Hero banner utility */
+.hero-banner {
+  @apply w-full rounded-2xl shadow-2xl;
+  border: 2px solid var(--gold);
+  background: var(--background);
+}
+
+/* Sidebar styles */
+.sidebar {
+  background: var(--sidebar);
+  color: var(--sidebar-foreground);
+  border-right: 1.5px solid var(--sidebar-border);
+}
+.sidebar-accent {
+  color: var(--sidebar-accent);
+}
+.sidebar-logo {
+  height: 56px;
+  width: auto;
+  display: block;
+  margin-bottom: 2rem;
+  filter: drop-shadow(0 2px 8px rgba(191,161,74,0.12));
+}
+/* === Animated gradient text effect === */
+@keyframes gradient-x {
+  0%, 100% { background-position: 0% center; }
+  50% { background-position: 100% center; }
+}
+.gradient-text {
+  background: linear-gradient(90deg, #bfa14a, #ffd700, #bfa14a);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: gradient-x 5s linear infinite;
+}
+
+/* === Glassmorphism card effect === */
+.glass-card {
+  background: rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  border: 1px solid rgba(191, 161, 74, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+  padding: 2rem;
+  color: #f5f5f5;
+}
+/* === Much better custom cursor with trailing effect === */
+body {
+  cursor: none !important;
+}
+.cursor-dot,
+.cursor-dot-trail {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: background 0.2s, opacity 0.2s;
+}
+.cursor-dot {
+  width: 12px;
+  height: 12px;
+  background: rgba(191, 161, 74, 0.7); /* gold, semi-transparent */
+  box-shadow: 0 0 8px 2px rgba(191, 161, 74, 0.3);
+  opacity: 0.9;
+}
+.cursor-dot-trail {
+  width: 32px;
+  height: 32px;
+  background: rgba(46, 54, 46, 0.25); /* your deep green, very transparent */
+  box-shadow: 0 0 16px 4px rgba(191, 161, 74, 0.15);
+  opacity: 0.5;
+  transition: transform 0.15s cubic-bezier(0.22, 1, 0.36, 1);
 }

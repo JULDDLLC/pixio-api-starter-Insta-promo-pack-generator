@@ -7,62 +7,58 @@ import { Metadata } from 'next';
  */
 export const siteMetadata: Metadata = {
   // Basic metadata
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://pixio-api-starter.vercel.app'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://juldd.com'),
   title: {
-    default: 'Pixio API Starter',
-    template: '%s | Pixio API Starter'
+    default: 'JULDD Insta-Promo Pack Generator',
+    template: '%s | JULDD Insta-Promo Pack Generator'
   },
-  description: 'Unleash AI creativity with Pixio API for stunning image and video generation, powered by Supabase, NextJS, and Stripe',
-  applicationName: 'Pixio API Starter',
-  authors: [{ name: 'Alisher Farhadi', url: 'https://pixio-api-starter.vercel.app' }],
+  description: 'Generate stunning, branded social media promo packs in seconds. AI-powered images, captions, and PDFs for small businesses. Founded by Julie Todd, 2024.',
+  applicationName: 'JULDD Insta-Promo Pack Generator',
+  authors: [{ name: 'Julie Todd', url: 'https://juldd.com' }],
   generator: 'Next.js',
-  keywords: ['AI', 'image generation', 'video generation', 'Pixio API', 'ComfyUI', 'Supabase', 'SaaS', 'AI media', 'subscription', 'credits', 'artificial intelligence'],
+  keywords: ['JULDD', 'social media', 'promo pack', 'AI', 'branding', 'small business', 'image generation', 'PDF', 'SaaS'],
   referrer: 'origin-when-cross-origin',
-  creator: 'Alisher Farhadi',
-  publisher: 'Alisher Farhadi',
+  creator: 'Julie Todd',
+  publisher: 'JULDD LLC',
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  
+
   // Appearance
   themeColor: [
-    { media: '(prefers-color-scheme: dark)', color: '#0c0a13' },
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' }
+    { media: '(prefers-color-scheme: dark)', color: '#0B3D2E' }
   ],
-  colorScheme: 'light dark',
+  colorScheme: 'dark',
   viewport: {
     width: 'device-width',
     initialScale: 1,
     maximumScale: 5,
     userScalable: true,
   },
-  
+
   // Icons
   icons: {
     icon: [
-      { url: '/metadata/favicon.ico', sizes: 'any' },
-      { url: '/metadata/icon.svg', type: 'image/svg+xml' },
-      { url: '/metadata/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/metadata/favicon-32x32.png', sizes: '32x32', type: 'image/png' }
+      { url: '/juldd_favicon.png', sizes: 'any' },
+      { url: '/juldd_logo.svg', type: 'image/svg+xml' }
     ],
     apple: [
-      { url: '/metadata/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }
+      { url: '/juldd_favicon.png', sizes: '180x180', type: 'image/png' }
     ],
     other: [
-      { rel: 'mask-icon', url: '/metadata/safari-pinned-tab.svg', color: '#7068F4' },
-      { rel: 'apple-touch-startup-image', url: '/metadata/splash.png' }
+      { rel: 'mask-icon', url: '/juldd_logo.svg', color: '#D4AF37' }
     ]
   },
-  
+
   // AppLinks (deep linking)
   appleWebApp: {
-    title: 'Pixio API Starter',
+    title: 'JULDD Insta-Promo Pack Generator',
     statusBarStyle: 'black-translucent',
     capable: true,
   },
-  
+
   // Verification
   verification: {
     google: process.env.GOOGLE_SITE_VERIFICATION || 'google-site-verification',
@@ -74,53 +70,45 @@ export const siteMetadata: Metadata = {
       'bing-verification': process.env.BING_VERIFICATION || 'bing-verification'
     }
   },
-  
+
   // Open Graph metadata
   openGraph: {
     type: 'website',
-    siteName: 'Pixio API Starter',
-    title: 'Pixio API Starter - AI Media Generation',
-    description: 'Unleash AI creativity with Pixio API for stunning image and video generation, powered by Supabase, NextJS, and Stripe',
+    siteName: 'JULDD Insta-Promo Pack Generator',
+    title: 'JULDD Insta-Promo Pack Generator',
+    description: 'Generate stunning, branded social media promo packs in seconds. AI-powered images, captions, and PDFs for small businesses.',
     locale: 'en_US',
-    alternateLocale: ['fr_FR', 'es_ES', 'de_DE'],
-    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://pixio-api-starter.vercel.app',
+    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://juldd.com',
     images: [
       {
-        url: '/metadata/og-image.png',
+        url: '/juldd_logo.png', // Use your best wide logo or OG image
         width: 1200,
         height: 630,
-        alt: 'Pixio API Starter - AI Media Generation',
+        alt: 'JULDD Insta-Promo Pack Generator',
         type: 'image/png',
-        secureUrl: '/metadata/og-image.png',
-      },
-      {
-        url: '/metadata/og-square-image.png',
-        width: 1080,
-        height: 1080,
-        alt: 'Pixio API Starter - AI Media Generation Square',
-        type: 'image/png',
+        secureUrl: '/juldd_logo.png',
       }
     ],
     countryName: 'United States',
     determiner: 'the',
-    emails: ['alisher.farhadi@gmail.com'],
-    phoneNumbers: ['+1-800-123-4567'],
-    faxNumbers: ['+1-800-123-4568'],
+    emails: ['julie@juldd.com'],
+    phoneNumbers: [],
+    faxNumbers: [],
   },
-  
+
   // Twitter metadata
   twitter: {
     card: 'summary_large_image',
-    site: '@pixio_ai',
-    creator: '@pixio_ai',
-    title: 'Pixio API Starter - AI Media Generation',
-    description: 'Unleash AI creativity with Pixio API for stunning image and video generation, powered by Supabase, NextJS, and Stripe',
+    site: 'https://x.com/JULDDLLC',
+    creator: '@julddllc',
+    title: 'JULDD Insta-Promo Pack Generator',
+    description: 'Generate stunning, branded social media promo packs in seconds. AI-powered images, captions, and PDFs for small businesses.',
     images: {
-      url: '/metadata/twitter-image.png',
-      alt: 'Pixio API Starter - AI Media Generation',
+      url: '/juldd_logo.png',
+      alt: 'JULDD Insta-Promo Pack Generator',
     }
   },
-  
+
   // SEO controls
   robots: {
     index: true,
@@ -135,47 +123,43 @@ export const siteMetadata: Metadata = {
       'max-snippet': -1,
     }
   },
-  
+
   // Alternate versions
   alternates: {
-    canonical: process.env.NEXT_PUBLIC_SITE_URL || 'https://pixio-api-starter.vercel.app',
+    canonical: process.env.NEXT_PUBLIC_SITE_URL || 'https://juldd.com',
     languages: {
-      'en-US': 'https://pixio-api-starter.vercel.app/en-US',
-      'fr-FR': 'https://pixio-api-starter.vercel.app/fr-FR',
-      'es-ES': 'https://pixio-api-starter.vercel.app/es-ES',
+      'en-US': 'https://juldd.com/en-US',
     },
     media: {
-      'only screen and (max-width: 600px)': 'https://pixio-api-starter.vercel.app/mobile',
+      'only screen and (max-width: 600px)': 'https://juldd.com/mobile',
     },
     types: {
-      'application/rss+xml': 'https://pixio-api-starter.vercel.app/rss',
+      'application/rss+xml': 'https://juldd.com/rss',
     }
   },
-  
 
-  
   // Other custom metadata
   other: {
-    'msapplication-TileColor': '#7068F4',
+    'msapplication-TileColor': '#0B3D2E',
     'msapplication-config': '/browserconfig.xml',
-    'apple-itunes-app': 'app-id=123456789, app-argument=https://pixio-api-starter.vercel.app',
-    'google-play-app': 'app-id=com.pixio.api',
-    'application-name': 'Pixio API',
+    'apple-itunes-app': '',
+    'google-play-app': '',
+    'application-name': 'JULDD Insta-Promo Pack Generator',
     'apple-mobile-web-app-capable': 'yes',
     'apple-mobile-web-app-status-bar-style': 'black-translucent',
-    'apple-mobile-web-app-title': 'Pixio API',
-    'theme-color': '#7068F4',
+    'apple-mobile-web-app-title': 'JULDD Insta-Promo Pack Generator',
+    'theme-color': '#0B3D2E',
     'format-detection': 'telephone=no',
     'pinterest': process.env.PINTEREST_VERIFICATION || 'pinterest-verification',
     'norton-safeweb-site-verification': process.env.NORTON_VERIFICATION || 'norton-verification',
-    
+
     // Structured data (JSON-LD)
     'script:ld+json': JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'WebApplication',
-      'name': 'Pixio API Starter',
-      'url': process.env.NEXT_PUBLIC_SITE_URL || 'https://pixio-api-starter.vercel.app',
-      'description': 'Unleash AI creativity with powerful machines for stunning image and video generation',
+      'name': 'JULDD Insta-Promo Pack Generator',
+      'url': process.env.NEXT_PUBLIC_SITE_URL || 'https://juldd.com',
+      'description': 'Generate stunning, branded social media promo packs in seconds. AI-powered images, captions, and PDFs for small businesses.',
       'applicationCategory': 'MultimediaApplication, AIApplication',
       'operatingSystem': 'Web',
       'offers': {
@@ -185,19 +169,18 @@ export const siteMetadata: Metadata = {
       },
       'author': {
         '@type': 'Organization',
-        'name': 'Pixio API',
-        'url': process.env.NEXT_PUBLIC_SITE_URL || 'https://pixio-api-starter.vercel.app'
+        'name': 'JULDD LLC',
+        'url': process.env.NEXT_PUBLIC_SITE_URL || 'https://juldd.com'
       },
       'potentialAction': {
         '@type': 'ViewAction',
         'target': [
-          process.env.NEXT_PUBLIC_SITE_URL || 'https://pixio-api-starter.vercel.app'
+          process.env.NEXT_PUBLIC_SITE_URL || 'https://juldd.com'
         ]
       },
       'sameAs': [
-        'https://twitter.com/pixioapi',
-        'https://github.com/afarhadi99/pixio-api-starter',
-        'https://www.instagram.com/pixioapi'
+        'https://twitter.com/julddllc',
+        'https://www.instagram.com/julddllc'
       ]
     })
   }

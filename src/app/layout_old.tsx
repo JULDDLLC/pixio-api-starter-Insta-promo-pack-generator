@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} bg-juldd-deep min-h-screen text-white`}>
+      <body className="bg-juldd-deep min-h-screen text-white">
         <CustomCursor />
         {/* Navbar */}
         <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-juldd-deep/90 border-b border-juldd-greenDark/40 flex justify-between items-center px-8 py-4 shadow-lg">

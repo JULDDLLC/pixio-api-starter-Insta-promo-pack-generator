@@ -1,5 +1,3 @@
-// src/app/(marketing)/page.tsx
-
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -17,7 +15,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { PRICING_TIERS, PricingTier, getTierByPriceId } from '@/lib/config/pricing';
-import { Check, ExternalLink, ArrowRight, Star, Sparkles, Zap, Github } from 'lucide-react';
+import { Check, ExternalLink, ArrowRight, Star, Sparkles, Zap, Instagram } from 'lucide-react';
 import { formatPrice } from '@/lib/utils';
 import { toast } from 'sonner';
 import { createClient } from '@/lib/supabase/client';
@@ -25,10 +23,9 @@ import { Subscription } from '@/types/db_types';
 import { Footer } from '@/components/shared/footer';
 
 // Define prop types for components
-interface WorkflowCardProps {
+interface FeatureCardProps {
   title: string;
   description: string;
-  link: string;
   icon: React.ReactNode;
   index: number;
 }
@@ -140,8 +137,8 @@ const AnimatedBackground = () => {
 
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
-      {/* Base gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5" />
+      {/* Base gradient - using JULDD colors */}
+      <div className="absolute inset-0 bg-gradient-to-br from-juldd-gold/10 via-juldd-deep/20 to-juldd-greenDark/10" />
 
       {/* Grid pattern - only add mousemove effect after mount */}
       <div
@@ -154,14 +151,14 @@ const AnimatedBackground = () => {
 
       {/* Moving circles - large ones with conditional transforms */}
       <div
-        className="absolute top-[10%] left-[5%] w-[40vw] h-[40vw] rounded-full bg-primary/5 filter blur-[100px] animate-float"
+        className="absolute top-[10%] left-[5%] w-[40vw] h-[40vw] rounded-full bg-juldd-gold/5 filter blur-[100px] animate-float"
         style={{
           animationDuration: '30s',
           transform: mounted ? `translateX(${mousePosition.x * -30}px) translateY(${mousePosition.y * -30}px)` : 'none'
         }}
       />
       <div
-        className="absolute top-[40%] right-[10%] w-[35vw] h-[35vw] rounded-full bg-secondary/5 filter blur-[100px] animate-float"
+        className="absolute top-[40%] right-[10%] w-[35vw] h-[35vw] rounded-full bg-juldd-greenDark/5 filter blur-[100px] animate-float"
         style={{
           animationDuration: '25s',
           animationDelay: '2s',
@@ -169,7 +166,7 @@ const AnimatedBackground = () => {
         }}
       />
       <div
-        className="absolute bottom-[15%] left-[20%] w-[30vw] h-[30vw] rounded-full bg-accent/5 filter blur-[100px] animate-float"
+        className="absolute bottom-[15%] left-[20%] w-[30vw] h-[30vw] rounded-full bg-juldd-deep/5 filter blur-[100px] animate-float"
         style={{
           animationDuration: '28s',
           animationDelay: '1s',
@@ -178,13 +175,13 @@ const AnimatedBackground = () => {
       />
 
       {/* Moving circles - medium ones */}
-      <div className="absolute top-[30%] left-[25%] w-[20vw] h-[20vw] rounded-full bg-primary/10 filter blur-[80px] animate-float" style={{ animationDuration: '20s', animationDelay: '3s' }}></div>
-      <div className="absolute top-[60%] right-[25%] w-[25vw] h-[25vw] rounded-full bg-secondary/10 filter blur-[80px] animate-float" style={{ animationDuration: '22s', animationDelay: '2.5s' }}></div>
+      <div className="absolute top-[30%] left-[25%] w-[20vw] h-[20vw] rounded-full bg-juldd-gold/10 filter blur-[80px] animate-float" style={{ animationDuration: '20s', animationDelay: '3s' }}></div>
+      <div className="absolute top-[60%] right-[25%] w-[25vw] h-[25vw] rounded-full bg-juldd-greenDark/10 filter blur-[80px] animate-float" style={{ animationDuration: '22s', animationDelay: '2.5s' }}></div>
 
       {/* Moving circles - small ones */}
-      <div className="absolute top-[15%] right-[30%] w-[10vw] h-[10vw] rounded-full bg-accent/10 filter blur-[50px] animate-float" style={{ animationDuration: '18s', animationDelay: '1.5s' }}></div>
-      <div className="absolute bottom-[25%] right-[15%] w-[15vw] h-[15vw] rounded-full bg-primary/10 filter blur-[60px] animate-float" style={{ animationDuration: '15s', animationDelay: '1s' }}></div>
-      <div className="absolute bottom-[45%] left-[10%] w-[12vw] h-[12vw] rounded-full bg-secondary/10 filter blur-[60px] animate-float" style={{ animationDuration: '17s', animationDelay: '0.5s' }}></div>
+      <div className="absolute top-[15%] right-[30%] w-[10vw] h-[10vw] rounded-full bg-juldd-deep/10 filter blur-[50px] animate-float" style={{ animationDuration: '18s', animationDelay: '1.5s' }}></div>
+      <div className="absolute bottom-[25%] right-[15%] w-[15vw] h-[15vw] rounded-full bg-juldd-gold/10 filter blur-[60px] animate-float" style={{ animationDuration: '15s', animationDelay: '1s' }}></div>
+      <div className="absolute bottom-[45%] left-[10%] w-[12vw] h-[12vw] rounded-full bg-juldd-greenDark/10 filter blur-[60px] animate-float" style={{ animationDuration: '17s', animationDelay: '0.5s' }}></div>
 
       {/* Animated particles with fixed positions to prevent hydration mismatch */}
       <div className="particles absolute inset-0 z-0">
@@ -285,7 +282,7 @@ const GradientHeading: React.FC<{
   from?: string,
   via?: string,
   to?: string
-}> = ({ children, className, from = "from-primary", via = "via-secondary", to = "to-accent" }) => {
+}> = ({ children, className, from = "from-juldd-gold", via = "via-juldd-gold/70", to = "to-juldd-gold/50" }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.5 });
   const [isMounted, setIsMounted] = useState(false);
@@ -297,12 +294,12 @@ const GradientHeading: React.FC<{
   return (
     <motion.div
       ref={ref}
-      className={`relative inline-block ${className || ''}`}
+      className={`relative inline-block ${className || ''} group`}
       initial={isMounted ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
       animate={isMounted && isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
     >
-      <h2 className={`text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r ${from} ${via} ${to}`}>
+      <h2 className={`text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r ${from} ${via} ${to} hover:scale-105 transition-transform duration-300`}>
         {children}
       </h2>
       {isMounted && (
@@ -317,8 +314,8 @@ const GradientHeading: React.FC<{
   );
 };
 
-// Workflow card component
-const WorkflowCard = ({ title, description, link, icon, index }: WorkflowCardProps) => {
+// Feature card component
+const FeatureCard = ({ title, description, icon, index }: FeatureCardProps) => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -327,7 +324,7 @@ const WorkflowCard = ({ title, description, link, icon, index }: WorkflowCardPro
 
   return (
     <MouseTrackCard className="h-full">
-      <Card className="glass-card h-full backdrop-blur-lg border border-white/20 dark:border-white/10 hover:shadow-lg hover:shadow-primary/10 dark:hover:shadow-primary/20 transition-all duration-300 overflow-hidden">
+      <Card className="glass-card h-full backdrop-blur-lg border border-white/20 dark:border-white/10 hover:shadow-lg hover:shadow-juldd-gold/10 dark:hover:shadow-juldd-gold/20 transition-all duration-300 overflow-hidden">
         <motion.div
           initial={isMounted ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
           whileInView={isMounted ? { opacity: 1, y: 0 } : {}}
@@ -344,18 +341,6 @@ const WorkflowCard = ({ title, description, link, icon, index }: WorkflowCardPro
           <CardContent className="space-y-4 flex-grow">
             <CardDescription className="text-sm text-foreground/80">{description}</CardDescription>
           </CardContent>
-          <CardFooter className="pt-2">
-            <Button
-              variant="outline"
-              className="gap-1 glass-button bg-white/10 dark:bg-white/5 hover:bg-white/20 dark:hover:bg-white/10 hover:text-primary w-full justify-center group"
-              asChild
-            >
-              <Link href={link} target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="h-4 w-4 group-hover:scale-110 transition-transform" />
-                <span>Open in Pixio API</span>
-              </Link>
-            </Button>
-          </CardFooter>
         </motion.div>
       </Card>
     </MouseTrackCard>
@@ -423,6 +408,63 @@ const PricingSection = ({ userTierId, isAuthenticated }: PricingSectionProps) =>
     }
   };
 
+  // Custom pricing tiers for JULDD
+  const JULDD_PRICING_TIERS = [
+    {
+      id: 'free',
+      name: 'Free',
+      description: 'Perfect for trying out our platform',
+      popular: false,
+      features: [
+        '5 promo packs per month',
+        'Basic templates',
+        'Standard image quality',
+        'JULDD watermark',
+        'Email support'
+      ],
+      pricing: {
+        monthly: { amount: 0, priceId: null },
+        yearly: { amount: 0, priceId: null, discount: 0 }
+      }
+    },
+    {
+      id: 'basic',
+      name: 'Basic',
+      description: 'For small businesses with regular needs',
+      popular: true,
+      features: [
+        '30 promo packs per month',
+        'All templates included',
+        'High-quality images',
+        'No watermarks',
+        'Priority email support',
+        'Social media scheduling'
+      ],
+      pricing: {
+        monthly: { amount: 1999, priceId: 'price_basic_monthly' },
+        yearly: { amount: 19190, priceId: 'price_basic_yearly', discount: 20 }
+      }
+    },
+    {
+      id: 'premium',
+      name: 'Premium',
+      description: 'For businesses with high-volume needs',
+      popular: false,
+      features: [
+        'Unlimited promo packs',
+        'Premium templates',
+        'Ultra-high quality images',
+        'Priority generation',
+        'Phone & email support',
+        'Advanced analytics',
+        'Custom branding options'
+      ],
+      pricing: {
+        monthly: { amount: 3999, priceId: 'price_premium_monthly' },
+        yearly: { amount: 38390, priceId: 'price_premium_yearly', discount: 20 }
+      }
+    }
+  ];
 
   return (
     <>
@@ -437,7 +479,7 @@ const PricingSection = ({ userTierId, isAuthenticated }: PricingSectionProps) =>
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          Choose the perfect plan for your needs. All plans include access to Pixio API machines.
+          Choose the perfect plan for your promotional content needs. No complex credit systems or hidden fees.
         </motion.p>
 
         {/* Billing toggle */}
@@ -454,7 +496,7 @@ const PricingSection = ({ userTierId, isAuthenticated }: PricingSectionProps) =>
           <button
             ref={switchRef}
             type="button"
-            className="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-primary/20 backdrop-blur-sm transition-colors duration-300 ease-spring focus:outline-none focus:ring-2 focus:ring-primary/30 focus:ring-offset-2 group"
+            className="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-juldd-gold/20 backdrop-blur-sm transition-colors duration-300 ease-spring focus:outline-none focus:ring-2 focus:ring-juldd-gold/30 focus:ring-offset-2 group"
             role="switch"
             aria-checked={billingInterval === 'yearly'}
             onClick={() => setBillingInterval(billingInterval === 'monthly' ? 'yearly' : 'monthly')}
@@ -486,7 +528,7 @@ const PricingSection = ({ userTierId, isAuthenticated }: PricingSectionProps) =>
                     {[...Array(5)].map((_, i) => (
                       <motion.div
                         key={i}
-                        className="absolute h-1 w-1 rounded-full bg-accent/50"
+                        className="absolute h-1 w-1 rounded-full bg-juldd-gold/50"
                         initial={{
                           x: 0,
                           y: 0,
@@ -517,7 +559,7 @@ const PricingSection = ({ userTierId, isAuthenticated }: PricingSectionProps) =>
           <span className={`text-sm flex items-center gap-1.5 ${billingInterval === 'yearly' ? 'text-foreground font-medium' : 'text-muted-foreground'}`}>
             Yearly
             <motion.span
-              className="inline-block px-1.5 py-0.5 text-xs rounded-full bg-accent/10 text-accent/90 font-medium backdrop-blur-sm"
+              className="inline-block px-1.5 py-0.5 text-xs rounded-full bg-juldd-gold/10 text-juldd-gold/90 font-medium backdrop-blur-sm"
               animate={isMounted ? {
                 scale: billingInterval === 'yearly' ? [1, 1.1, 1] : 1
               } : {}}
@@ -527,14 +569,14 @@ const PricingSection = ({ userTierId, isAuthenticated }: PricingSectionProps) =>
                 ease: "easeInOut"
               }}
             >
-              Save up to 16%
+              Save 20%
             </motion.span>
           </span>
         </motion.div>
       </div>
 
       <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        {PRICING_TIERS.map((tier, index) => {
+        {JULDD_PRICING_TIERS.map((tier, index) => {
           const price = tier.pricing[billingInterval];
           const isCurrentPlan = userTierId === tier.id;
 
@@ -544,7 +586,7 @@ const PricingSection = ({ userTierId, isAuthenticated }: PricingSectionProps) =>
           let buttonLink: string | undefined;
           let buttonDisabled = false;
           let buttonStyleClass = tier.popular
-            ? 'bg-gradient-to-r from-primary/90 to-secondary/90 text-white hover:opacity-90'
+            ? 'bg-gradient-to-r from-juldd-gold/90 to-juldd-gold/70 text-juldd-deep hover:opacity-90'
             : 'glass-button bg-white/10 hover:bg-white/20 text-foreground';
 
           if (!isAuthenticated) {
@@ -588,18 +630,18 @@ const PricingSection = ({ userTierId, isAuthenticated }: PricingSectionProps) =>
                 className="h-full"
               >
                 <Card className={`glass-card backdrop-blur-lg border relative overflow-hidden h-full flex flex-col
-                  ${tier.popular ? 'border-primary/30 shadow-lg shadow-primary/10 dark:shadow-primary/20' : 'border-white/20 dark:border-white/10'}
-                  hover:shadow-xl hover:shadow-primary/10 dark:hover:shadow-primary/20 transition-all duration-300`}
+                  ${tier.popular ? 'border-juldd-gold/30 shadow-lg shadow-juldd-gold/10 dark:shadow-juldd-gold/20' : 'border-white/20 dark:border-white/10'}
+                  hover:shadow-xl hover:shadow-juldd-gold/10 dark:hover:shadow-juldd-gold/20 transition-all duration-300`}
                 >
                   {tier.popular && (
-                    <div className="absolute top-0 right-0 bg-gradient-to-r from-primary/90 to-secondary/90 text-white text-xs px-3 py-1 rounded-bl-lg flex items-center gap-1">
+                    <div className="absolute top-0 right-0 bg-gradient-to-r from-juldd-gold/90 to-juldd-gold/70 text-juldd-deep text-xs px-3 py-1 rounded-bl-lg flex items-center gap-1">
                       <Star className="h-3 w-3" />
                       <span>Popular</span>
                     </div>
                   )}
 
                   <CardHeader>
-                    <CardTitle className={`text-xl ${tier.popular ? "text-primary" : ""}`}>{tier.name}</CardTitle>
+                    <CardTitle className={`text-xl ${tier.popular ? "text-juldd-gold" : ""}`}>{tier.name}</CardTitle>
                     <CardDescription>{tier.description}</CardDescription>
                     <div className="mt-4">
                       {price.amount ? (
@@ -621,7 +663,7 @@ const PricingSection = ({ userTierId, isAuthenticated }: PricingSectionProps) =>
 
                       {isMounted && billingInterval === 'yearly' && tier.pricing.yearly.discount && (
                         <motion.p
-                          className="text-sm text-accent/90 mt-1"
+                          className="text-sm text-juldd-gold/90 mt-1"
                           initial={{ opacity: 0, x: -10 }}
                           animate={{ opacity: 1, x: 0 }}
                           key="yearly-discount"
@@ -644,7 +686,7 @@ const PricingSection = ({ userTierId, isAuthenticated }: PricingSectionProps) =>
                           viewport={{ once: true }}
                           transition={{ duration: 0.3, delay: 0.05 * i }}
                         >
-                          <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                          <Check className="h-5 w-5 text-juldd-gold shrink-0 mt-0.5" />
                           <span>{feature}</span>
                         </motion.li>
                       ))}
@@ -710,7 +752,7 @@ export default function LandingPage() {
         if (subscription) {
           const priceId = subscription.prices?.id;
           const { tier } = getTierByPriceId(priceId);
-          if (tier) {
+ if (tier) {
             setUserTierId(tier.id);
           }
         } else {
@@ -729,7 +771,7 @@ export default function LandingPage() {
       {/* Progress bar - only on client */}
       {mounted && (
         <motion.div
-          className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-secondary to-accent z-50 origin-left"
+          className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-juldd-gold via-juldd-gold/70 to-juldd-gold/50 z-50 origin-left"
           style={{ scaleX: progressBarScaleX }}
         />
       )}
@@ -739,12 +781,23 @@ export default function LandingPage() {
 
       {/* Hero section */}
       <motion.section
-        className="relative py-24 md:py-36 z-10"
+        className="relative py-36 md:py-48 z-10 overflow-hidden"
         style={mounted ? { opacity: heroOpacity, y: heroY } : {}}
       >
+        <div className="absolute inset-0">
+          <Image
+            src="/hero-bg.jpg" // Replace with your own hero image path
+            alt="JULDD Promo Generator"
+            layout="fill"
+            objectFit="cover"
+            quality={75}
+            className="opacity-40"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-juldd-deep/70 to-juldd-greenDark/70"></div>
+        </div>
         <div className="container mx-auto px-4 relative">
           <motion.div
-            className="max-w-3xl mx-auto text-center"
+            className="max-w-4xl mx-auto text-center"
             initial={mounted ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
             animate={mounted ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
@@ -756,8 +809,8 @@ export default function LandingPage() {
               transition={{ delay: 0.1, duration: 0.6 }}
             >
               <span className="flex items-center gap-1.5">
-                <Sparkles className="h-4 w-4 text-accent/80" />
-                Powered by Pixio A100 GPUs
+                <Sparkles className="h-4 w-4 text-juldd-gold/80" />
+                Unleash Your Brand's Potential
               </span>
             </motion.div>
 
@@ -766,72 +819,48 @@ export default function LandingPage() {
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.3, duration: 0.8 }}
             >
-              <h1
-                className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight bg-clip-text text-transparent"
-                style={{
-                  backgroundImage: "linear-gradient(to right, #7068F4, #FF64B4, #ffac4c)",
-                  backgroundSize: "200% 200%",
-                  ...(mounted ? {
-                    animation: "gradientMove 15s ease infinite"
-                  } : {})
-                }}
-              >
-                Pixio API Starter
+              <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 leading-tight text-white drop-shadow-lg">
+                JULDD Insta-Promo Pack Generator
               </h1>
-
-              <style jsx global>{`
-                @keyframes gradientMove {
-                  0% { background-position: 0% 50% }
-                  50% { background-position: 100% 50% }
-                  100% { background-position: 0% 50% }
-                }
-              `}</style>
             </motion.div>
 
             <motion.p
-              className="text-lg sm:text-xl text-foreground/80 mb-8 leading-relaxed"
+              className="text-xl sm:text-2xl text-white/80 mb-8 leading-relaxed drop-shadow-md"
               initial={mounted ? { opacity: 0 } : { opacity: 1 }}
               animate={mounted ? { opacity: 1 } : {}}
               transition={{ delay: 0.5, duration: 0.8 }}
             >
-              Unleash AI creativity with powerful machines for stunning image and video generation,
-              powered by Supabase and a flexible credit system
+              AI-powered promotional content creation for small businesses and startups.
+              Generate stunning social media posts, captions, and downloadable materials in seconds.
             </motion.p>
 
             <motion.div
-  className="flex flex-col sm:flex-row gap-4 justify-center"
-  initial={mounted ? { opacity: 0 } : { opacity: 1 }}
-  animate={mounted ? { opacity: 1 } : {}}
-  transition={{ delay: 0.7, duration: 0.8 }}
->
-  <MagneticButton className="bg-gradient-to-r from-primary/90 to-secondary/90 hover:from-primary/95 hover:to-secondary/95 text-white rounded-md py-2 px-4 font-medium shadow-md hover:shadow-lg transition-shadow">
-    <Link href="https://api.myapps.ai" target="_blank" rel="noopener noreferrer" className="flex items-center">
-      <ExternalLink className="mr-2 h-4 w-4" />
-      Visit Pixio API
-    </Link>
-  </MagneticButton>
+              className="flex flex-col sm:flex-row gap-4 justify-center"
+              initial={mounted ? { opacity: 0 } : { opacity: 1 }}
+              animate={mounted ? { opacity: 1 } : {}}
+              transition={{ delay: 0.7, duration: 0.8 }}
+            >
+              <MagneticButton className="bg-gradient-to-r from-juldd-gold/90 to-juldd-gold/70 hover:from-juldd-gold/95 hover:to-juldd-gold/75 text-juldd-deep rounded-md py-3 px-6 font-medium shadow-md hover:shadow-lg transition-shadow text-xl">
+                <Link href="/dashboard" className="flex items-center">
+                  <Instagram className="mr-2 h-5 w-5" />
+                  Create Your First Promo
+                </Link>
+              </MagneticButton>
 
-  <MagneticButton
-    className="glass-button bg-white/10 hover:bg-white/20 text-foreground rounded-md py-2 px-4 font-medium"
-    onClick={() => {
-      if (mounted) {
-        const pricingSection = document.getElementById('pricing');
-        if (pricingSection) {
-          pricingSection.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
-    }}
-  >
-    View Plans
-  </MagneticButton>
-  
-  <MagneticButton className="glass-button bg-white/10 hover:bg-white/20 text-foreground rounded-md py-2 px-4 font-medium">
-    <Link href="https://github.com/afarhadi99/pixio-api-starter" target="_blank" rel="noopener noreferrer" className="flex items-center">
-      <Github className="mr-2 h-4 w-4" />
-      Fork Repo
-    </Link>
-  </MagneticButton>
-</motion.div>
+              <MagneticButton
+                className="glass-button bg-white/10 hover:bg-white/20 text-white rounded-md py-3 px-6 font-medium text-xl"
+                onClick={() => {
+                  if (mounted) {
+                    const pricingSection = document.getElementById('pricing');
+                    if (pricingSection) {
+                      pricingSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }
+                }}
+              >
+                View Plans
+              </MagneticButton>
+            </motion.div>
           </motion.div>
         </div>
 
@@ -858,7 +887,7 @@ export default function LandingPage() {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="text-primary/70"
+              className="text-juldd-gold/70"
               whileHover={{ scale: 1.2 }}
             >
               <path d="M12 5v14M5 12l7 7 7-7"/>
@@ -872,7 +901,7 @@ export default function LandingPage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <GradientHeading className="mx-auto justify-center">
-              Powerful AI Generation Features
+              Powerful Features for Small Businesses
             </GradientHeading>
           </div>
 
@@ -886,14 +915,14 @@ export default function LandingPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
-                <div className="w-12 h-12 bg-primary/20 backdrop-blur-sm rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="w-12 h-12 bg-juldd-gold/20 backdrop-blur-sm rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-juldd-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-primary">Image Generation</h3>
+                <h3 className="text-xl font-semibold mb-2 text-juldd-gold">AI Image Generation</h3>
                 <p className="text-foreground/80">
-                  Create stunning images using advanced AI machines powered by the Pixio API. Turn text prompts into visual art.
+                  Create stunning promotional visuals tailored to your business type and brand identity with our advanced AI.
                 </p>
               </motion.div>
             </MouseTrackCard>
@@ -907,14 +936,14 @@ export default function LandingPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                <div className="w-12 h-12 bg-secondary/20 backdrop-blur-sm rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                <div className="w-12 h-12 bg-juldd-gold/20 backdrop-blur-sm rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-juldd-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-secondary">Video Generation</h3>
+                <h3 className="text-xl font-semibold mb-2 text-juldd-gold">Smart Caption Creator</h3>
                 <p className="text-foreground/80">
-                  Transform concepts into mesmerizing videos. Our API harnesses the power of cutting-edge AI for fluid animations.
+                  Generate compelling captions with strong calls-to-action that drive customer engagement and conversions.
                 </p>
               </motion.div>
             </MouseTrackCard>
@@ -928,71 +957,17 @@ export default function LandingPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                <div className="w-12 h-12 bg-accent/10 backdrop-blur-sm rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-accent/90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <div className="w-12 h-12 bg-juldd-gold/10 backdrop-blur-sm rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-juldd-gold/90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-accent/90">Credit System</h3>
+                <h3 className="text-xl font-semibold mb-2 text-juldd-gold/90">Insta-PDF Generator</h3>
                 <p className="text-foreground/80">
-                  Flexible credit-based system with pay-as-you-go options. Use credits for different generation types based on your needs.
+                  Create matching downloadable materials like menus, price lists, or event flyers that complement your social posts.
                 </p>
               </motion.div>
             </MouseTrackCard>
-          </div>
-        </div>
-      </section>
-
-      {/* Pixio API machines section */}
-      <section className="py-20 z-10 relative" id="workflows">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <GradientHeading className="mx-auto justify-center" from="from-secondary" to="to-primary">
-              Ready-to-Use Pixio API Machines
-            </GradientHeading>
-
-            <motion.p
-              className="text-center text-foreground/80 mt-6 mb-12 max-w-3xl mx-auto"
-              initial={mounted ? { opacity: 0 } : { opacity: 1 }}
-              whileInView={mounted ? { opacity: 1 } : {}}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              Get started quickly with our pre-configured machines for image and video generation
-            </motion.p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            <WorkflowCard
-              title="Flux with LoRA Machine"
-              description="Create beautiful illustrations and stylized images using this optimized Flux machine. Perfect for generating high-quality artwork with LoRA fine-tuning capabilities."
-              link="https://api.myapps.ai/share/alisher-farhadi-book-illustrations"
-              icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>}
-              index={1}
-            />
-
-            <WorkflowCard
-              title="Wan 2.1 Text to Video Machine"
-              description="Generate smooth, high-quality animations and videos with this specialized Wan 2.1 machine. Create fluid motion sequences from simple text prompts."
-              link="https://api.myapps.ai/share/alisher-farhadi-wan"
-              icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-              </svg>}
-              index={2}
-            />
-            <WorkflowCard
-              title="Wan 2.1 First to Last Frame Machine"
-              description="Generate smooth video transitions between a start and end image using the Wan 2.1 model. Bring static images to life with controlled animation."
-              link="https://api.myapps.ai/share/alisher-farhadi-wan-2-1-first-to-last-frame" // Placeholder link - update if you have a specific share link
-              icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                {/* Using a slightly different icon to represent frame-to-frame */}
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M4 6h8M4 10h8M4 14h8M4 18h8" />
-              </svg>}
-              index={3} // Increment index for animation delay
-            />
-            
           </div>
         </div>
       </section>
@@ -1001,8 +976,8 @@ export default function LandingPage() {
       <section className="py-20 z-10 relative">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <GradientHeading className="mx-auto justify-center" from="from-accent/90" via="via-primary" to="to-secondary">
-              How Pixio API Works
+            <GradientHeading className="mx-auto justify-center" from="from-juldd-gold/90" via="via-juldd-gold/70" to="to-juldd-gold/50">
+              How It Works - From Idea to Promo in 60 Seconds
             </GradientHeading>
           </div>
 
@@ -1011,7 +986,7 @@ export default function LandingPage() {
             {mounted && (
               <div className="hidden md:block absolute top-16 left-[20%] right-[20%] h-1 overflow-hidden">
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-primary via-secondary to-accent"
+                  className="absolute inset-0 bg-gradient-to-r from-juldd-gold via-juldd-gold/70 to-juldd-gold/50"
                   animate={{
                     x: ["-100%", "100%"]
                   }}
@@ -1033,7 +1008,7 @@ export default function LandingPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
-                <div className="bg-gradient-to-r from-primary to-secondary text-white w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-4 z-10 relative">
+                <div className="bg-gradient-to-r from-juldd-gold to-juldd-gold/70 text-juldd-deep w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-4 z-10 relative">
                   {mounted ? (
                     <motion.span
                       animate={{ scale: [1, 1.1, 1] }}
@@ -1045,9 +1020,9 @@ export default function LandingPage() {
                     <span>1</span>
                   )}
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Choose Your Type</h3>
+                <h3 className="text-xl font-semibold mb-2">Enter Business Details</h3>
                 <p className="text-foreground/80">
-                  Select between image or video generation in the intuitive dashboard interface.
+                  Simply enter your business type and the promotion you want to create.
                 </p>
               </motion.div>
             </MouseTrackCard>
@@ -1061,7 +1036,7 @@ export default function LandingPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                <div className="bg-gradient-to-r from-secondary to-accent/80 text-white w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-4 z-10 relative">
+                <div className="bg-gradient-to-r from-juldd-gold/70 to-juldd-gold/50 text-juldd-deep w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-4 z-10 relative">
                   {mounted ? (
                     <motion.span
                       animate={{ scale: [1, 1.1, 1] }}
@@ -1073,9 +1048,9 @@ export default function LandingPage() {
                     <span>2</span>
                   )}
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Create Your Prompt</h3>
+                <h3 className="text-xl font-semibold mb-2">Select Template</h3>
                 <p className="text-foreground/80">
-                  Write detailed prompts to guide the AI in generating your desired output.
+                  Choose from industry-specific templates or customize to match your brand.
                 </p>
               </motion.div>
             </MouseTrackCard>
@@ -1089,7 +1064,7 @@ export default function LandingPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                <div className="bg-gradient-to-r from-accent/80 to-primary text-white w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-4 z-10 relative">
+                <div className="bg-gradient-to-r from-juldd-gold/50 to-juldd-gold text-juldd-deep w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-4 z-10 relative">
                   {mounted ? (
                     <motion.span
                       animate={{ scale: [1, 1.1, 1] }}
@@ -1101,12 +1076,65 @@ export default function LandingPage() {
                     <span>3</span>
                   )}
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Generate & Download</h3>
+                <h3 className="text-xl font-semibold mb-2">Generate & Publish</h3>
                 <p className="text-foreground/80">
-                  Use your credits to generate the media and download your creations instantly.
+                  Get your complete promo pack with images, captions, and downloadable materials ready to share.
                 </p>
               </motion.div>
             </MouseTrackCard>
+          </div>
+        </div>
+      </section>
+
+      {/* Business types section */}
+      <section className="py-20 z-10 relative">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <GradientHeading className="mx-auto justify-center" from="from-juldd-gold" to="to-juldd-gold/50">
+              Specialized for Your Business
+            </GradientHeading>
+            
+            <motion.p
+              className="text-center text-foreground/80 mt-6 max-w-3xl mx-auto"
+              initial={mounted ? { opacity: 0 } : { opacity: 1 }}
+              whileInView={mounted ? { opacity: 1 } : {}}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              Industry-specific templates designed for small businesses like yours
+            </motion.p>
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-6">
+            {[
+              { name: "Restaurants & Cafés", icon: "🍽️" },
+              { name: "Retail Shops", icon: "🛍️" },
+              { name: "Beauty & Wellness", icon: "💆" },
+              { name: "Fitness Studios", icon: "🏋️" },
+              { name: "Professional Services", icon: "👔" },
+              { name: "Home Services", icon: "🔧" },
+              { name: "Event Planners", icon: "🎉" },
+              { name: "Local Artisans", icon: "🎨" },
+            ].map((business, index) => (
+              <MouseTrackCard key={business.name}>
+                <motion.div
+                  className="glass-card p-4 text-center backdrop-blur-lg border border-white/20 dark:border-white/10 h-full"
+                  initial={mounted ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
+                  whileInView={mounted ? { opacity: 1, y: 0 } : {}}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: 0.1 * index }}
+                >
+                  <div className="text-center">
+                    <div className="h-12 flex items-center justify-center mb-2">
+                      <div className="text-3xl">
+                        {business.icon}
+                      </div>
+                    </div>
+                    <p className="font-medium">{business.name}</p>
+                  </div>
+                </motion.div>
+              </MouseTrackCard>
+            ))}
           </div>
         </div>
       </section>
@@ -1118,9 +1146,9 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Tech stack section */}
+      {/* Testimonials section */}
       <motion.section
-        className="py-20 z-10 relative"
+        className="py-20 z-10 relative bg-juldd-deep"
         initial={mounted ? { opacity: 0 } : { opacity: 1 }}
         whileInView={mounted ? { opacity: 1 } : {}}
         viewport={{ once: true }}
@@ -1128,49 +1156,49 @@ export default function LandingPage() {
       >
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <GradientHeading className="mx-auto justify-center" from="from-primary" via="via-secondary" to="to-accent">
-              Built With Modern Tech
+            <GradientHeading className="mx-auto justify-center" from="from-juldd-gold" via="via-juldd-gold/70" to="to-juldd-gold/50">
+              What Small Business Owners Say
             </GradientHeading>
           </div>
 
-          <motion.p
-            className="text-center text-foreground/80 mb-12 max-w-3xl mx-auto"
-            initial={mounted ? { opacity: 0 } : { opacity: 1 }}
-            whileInView={mounted ? { opacity: 1 } : {}}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            A powerful stack of technologies to provide a seamless experience
-          </motion.p>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-3 gap-8">
             {[
-              { name: "Next.js 15", icon: "/icons/nextjs.svg", color: "from-primary to-secondary" },
-              { name: "Supabase", icon: "/icons/supabase.svg", color: "from-accent/80 to-secondary" },
-              { name: "Stripe", icon: "/icons/stripe.svg", color: "from-primary to-accent/80" },
-              { name: "ComfyUI", icon: "/icons/comfyui.svg", color: "from-secondary to-primary" },
-              { name: "Tailwind CSS", icon: "/icons/tailwind.svg", color: "from-accent/80 to-primary" },
-              { name: "TypeScript", icon: "/icons/typescript.svg", color: "from-secondary to-accent/80" },
-              { name: "Pixio API", icon: "/icons/pixio.svg", color: "from-primary to-secondary" },
-              { name: "ShadcnUI", icon: "/icons/shadcn.svg", color: "from-accent/80 to-primary" },
-            ].map((tech, index) => (
-              <MouseTrackCard key={tech.name}>
+              {
+                quote: "I used to spend hours creating promotional content. Now I can generate a complete promo pack in under a minute!",
+                author: "Sarah T.",
+                business: "Café Owner"
+              },
+              {
+                quote: "The templates are perfect for my boutique. My Instagram engagement has increased by 45% since I started using JULDD.",
+                author: "Michael R.",
+                business: "Retail Shop Owner"
+              },
+              {
+                quote: "As a solo entrepreneur, I don't have time for marketing. This tool has been a game-changer for my business.",
+                author: "Jessica L.",
+                business: "Fitness Instructor"
+              }
+            ].map((testimonial, index) => (
+              <MouseTrackCard key={index}>
                 <motion.div
-                  className="glass-card p-4 text-center backdrop-blur-lg border border-white/20 dark:border-white/10 h-full"
+                  className="glass-card p-6 backdrop-blur-lg border border-white/20 dark:border-white/10 h-full text-white"
                   initial={mounted ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
                   whileInView={mounted ? { opacity: 1, y: 0 } : {}}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: 0.1 * index }}
+                  transition={{ duration: 0.6, delay: 0.2 * index }}
                 >
-                  <div className="text-center">
-                    <div className="h-12 flex items-center justify-center mb-2">
-                      <div
-                        className={`w-10 h-10 bg-gradient-to-br ${tech.color} rounded-md flex items-center justify-center text-white bg-opacity-90`}
-                      >
-                        {tech.name[0]}
-                      </div>
+                  <div className="flex flex-col h-full">
+                    <div className="text-juldd-gold/80 mb-4">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-juldd-gold">
+                        <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
+                        <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path>
+                      </svg>
                     </div>
-                    <p className="font-medium">{tech.name}</p>
+                    <p className="text-white/90 mb-4 flex-grow">{testimonial.quote}</p>
+                    <div className="mt-auto">
+                      <p className="font-semibold text-juldd-gold">{testimonial.author}</p>
+                      <p className="text-sm text-white/70">{testimonial.business}</p>
+                    </div>
                   </div>
                 </motion.div>
               </MouseTrackCard>
@@ -1198,43 +1226,39 @@ export default function LandingPage() {
             {/* Animated highlights - client-side only */}
             {mounted && (
               <>
-                <div className="absolute -top-40 -left-40 w-80 h-80 bg-primary/20 rounded-full blur-3xl animate-pulse opacity-70"></div>
-                <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-secondary/20 rounded-full blur-3xl animate-pulse opacity-70" style={{ animationDelay: '1s' }}></div>
+                <div className="absolute -top-40 -left-40 w-80 h-80 bg-juldd-gold/20 rounded-full blur-3xl animate-pulse opacity-70"></div>
+                <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-juldd-gold/20 rounded-full blur-3xl animate-pulse opacity-70" style={{ animationDelay: '1s' }}></div>
               </>
             )}
 
             <motion.div
               className="relative z-10"
               initial={mounted ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
-              whileInView={mounted ? { opacity: 1, y: 0 } : {}}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              animate={mounted ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <div className="bg-white/10 backdrop-blur-xl w-16 h-16 rounded-full mx-auto flex items-center justify-center mb-6">
-                <Zap className="h-8 w-8 text-primary" />
-              </div>
-
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
-                Ready to Create with AI?
+              <h2 className="text-4xl font-bold mb-4 text-juldd-gold">
+                Ready to Transform Your Promotions?
               </h2>
-
-              <p className="text-lg text-foreground/80 mb-8 max-w-2xl mx-auto">
-                Start generating stunning images and videos today with our powerful AI machines and the Pixio API.
+              <p className="text-lg text-foreground/80 mb-8">
+                Join hundreds of small businesses using JULDD to create stunning promotional content effortlessly.
               </p>
-
-              <MagneticButton className="bg-gradient-to-r from-primary/90 to-secondary/90 text-white hover:opacity-90 hover:shadow-lg transition-all shadow-md rounded-md py-2 px-6 font-medium">
-                <Link href={isAuthenticated ? "/dashboard" : "/signup"} className="flex items-center">
-                  {isAuthenticated ? "Go to Dashboard" : "Get Started"} <ArrowRight className="ml-2 h-4 w-4" />
+              <MagneticButton className="bg-gradient-to-r from-juldd-gold/90 to-juldd-gold/70 hover:from-juldd-gold/95 hover:to-juldd-gold/75 text-juldd-deep rounded-md py-3 px-6 font-semibold shadow-lg hover:shadow-xl transition-shadow">
+                <Link href="/signup" className="flex items-center gap-2">
+                  Get Started Now
+                  <ArrowRight className="w-5 h-5" />
                 </Link>
               </MagneticButton>
             </motion.div>
-            
           </motion.div>
-          
         </div>
-       
       </motion.section>
-      
+
+      {/* Footer */}
+      <Footer />
     </>
   );
 }
+
+
+

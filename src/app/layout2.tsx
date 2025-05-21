@@ -20,7 +20,6 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} bg-juldd-deep min-h-screen text-white`}>
         <CustomCursor />
-        {/* Navbar */}
         <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-juldd-deep/90 border-b border-juldd-greenDark/40 flex justify-between items-center px-8 py-4 shadow-lg">
           <div className="text-2xl font-serif font-bold text-juldd-gold select-none">
             JULDD Insta-Promo Pack Generator
@@ -32,13 +31,9 @@ export default function RootLayout({
             <ThemeToggle />
           </nav>
         </header>
-
-        {/* Main content */}
         <main className="flex-grow pt-24 container mx-auto px-6 max-w-5xl">
           {children}
         </main>
-
-        {/* Footer */}
         <footer className="bg-juldd-greenDark text-juldd-gold py-6 mt-12">
           <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-sm">
             <p>© {new Date().getFullYear()} JULDD LLC. All rights reserved.</p>
@@ -49,7 +44,6 @@ export default function RootLayout({
             </div>
           </div>
         </footer>
-
         <Analytics />
         <SpeedInsights />
         <Toaster position="bottom-right" />
