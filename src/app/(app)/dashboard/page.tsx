@@ -11,6 +11,8 @@ import { fetchUserMedia } from '@/lib/actions/media.actions';
 import { CREDIT_COSTS, GENERATION_MODES } from '@/lib/constants/media';
 import { Sparkles, Bot, Image as ImageIconLucide, Film, StepForward } from 'lucide-react'; // Added StepForward icon
 
+export const runtime = 'edge';
+
 export default async function DashboardPage() {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();

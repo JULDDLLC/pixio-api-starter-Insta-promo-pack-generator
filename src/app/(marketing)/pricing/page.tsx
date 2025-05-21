@@ -3,6 +3,8 @@ import { createClient } from '@/lib/supabase/server';
 import { PRICING_TIERS, getTierByPriceId } from '@/lib/config/pricing';
 import { PricingClient } from '@/components/pricing/pricing-client';
 
+export const runtime = 'edge';
+
 export default async function PricingPage() {
   const supabase = await createClient();
   
