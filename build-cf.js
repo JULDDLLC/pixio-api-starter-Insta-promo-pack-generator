@@ -1,4 +1,5 @@
-const { execSync } = require('child_process');
+// This is a test comment to force a rebuild
+// const { execSync } = require('child_process');
 
 console.log('🚀 Running custom Cloudflare Pages build script');
 try {
@@ -16,3 +17,4 @@ try {
   console.error('❌ Build failed:', error);
   process.exit(1);
 }
+
