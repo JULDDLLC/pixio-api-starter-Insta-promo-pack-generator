@@ -1,4 +1,6 @@
-// This is a test comment to force a rebuild
+//fix: ensure npm run build is used in build-cf.js
+//This is a test comment to force another rebuild    
+// // This is a test comment to force a rebuild
 // const { execSync } = require('child_process');
 
 console.log('🚀 Running custom Cloudflare Pages build script');
