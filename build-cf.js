@@ -1,5 +1,8 @@
-//fix: ensure npm run build is used in build-cf.js
-//This is a test comment to force another rebuild    
+
+const { execSync } = require('child_process');
+
+console.log('🟢🟢🟢 THIS IS THE LATEST build-cf.js 🟢🟢🟢');
+execSync('npm run build', { stdio: 'inherit' });
 // // This is a test comment to force a rebuild
 // const { execSync } = require('child_process');
 
